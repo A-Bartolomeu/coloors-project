@@ -48,15 +48,15 @@ svg {
   flex-direction: column;
   position: absolute;
   bottom: 0%;
-  background: bisque;
-  opacity: 0;
+  background: white;
+  /*opacity: 0;*/
   padding: 1rem;
   width: 80%;
   border-top-right-radius: 1rem;
   border-top-left-radius: 1rem;
-  pointer-events: none;
-  /* We are adding an adjustement class */
-  transform: translateY(100px);
+  /*pointer-events: none;
+   We are adding an adjustement class */
+  /*transform: translateY(100px);*/
   transition: all 0.5s ease-in-out;
 }
 .sliders.active {
@@ -84,6 +84,9 @@ svg {
   -webkit-appearance: none;
   appearance: none;
   border-radius: 1rem;
+  background-color: gray;
+  margin: 1rem;
+  padding: 0.1rem;
 }
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -91,7 +94,7 @@ input[type="range"]::-webkit-slider-thumb {
   height: 0.4rem;
   width: 0.4rem;
   border-radius: 1rem;
-  background: gray;
+  background: white;
   cursor: pointer;
 }
 
