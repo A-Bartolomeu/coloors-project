@@ -17,6 +17,13 @@ generateBtn.addEventListener("click", randomColors);
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
+addEventListener("keydown", (event) => {
+  if (event.key === " ") {
+    generateBtn.focus();
+    //randomColors();
+  }
+});
+
 colorDivs.forEach((div, index) => {
   div.addEventListener("change", () => {
     updateTextUI(index);
@@ -283,6 +290,11 @@ function savePalette(e) {
   paletteBtn.classList.add("pick-palette-btn");
   paletteBtn.classList.add(paletteObj.nr);
   paletteBtn.innerText = "Select";
+  const trashBtn = document.createElement("button");
+  trashBtn.classList.add("trash-btn");
+  trashBtn.classList.add(paletteObj.nr);
+  trashBtn.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+  palette.appendChild(trashBtn);
 
   //Attach event to the btn
   paletteBtn.addEventListener("click", (e) => {
@@ -297,6 +309,18 @@ function savePalette(e) {
       updateTextUI(index);
     });
     resetInputs();
+  });
+
+  //Delete palette
+  trashBtn.addEventListener("click", (e) => {
+    const paletteIndex = e.target.classList[1];
+    savedPalettes.splice(paletteIndex, 1);
+    const paletteElement = e.target.parentElement;
+    paletteElement.remove();
+    savedPalettes.forEach((palette, index) => {
+      palette.nr = index;
+    });
+    localStorage.setItem("palettes", JSON.stringify(savedPalettes));
   });
 
   //Append to Library
@@ -353,6 +377,11 @@ function getLocal() {
       paletteBtn.classList.add("pick-palette-btn");
       paletteBtn.classList.add(paletteObj.nr);
       paletteBtn.innerText = "Select";
+      const trashBtn = document.createElement("button");
+      trashBtn.classList.add("trash-btn");
+      trashBtn.classList.add(paletteObj.nr);
+      trashBtn.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+      palette.appendChild(trashBtn);
 
       //Attach event to the btn
       paletteBtn.addEventListener("click", (e) => {
@@ -367,6 +396,18 @@ function getLocal() {
           updateTextUI(index);
         });
         resetInputs();
+      });
+
+      //Delete palette
+      trashBtn.addEventListener("click", (e) => {
+        const paletteIndex = e.target.classList[1];
+        savedPalettes.splice(paletteIndex, 1);
+        const paletteElement = e.target.parentElement;
+        paletteElement.remove();
+        savedPalettes.forEach((palette, index) => {
+          palette.nr = index;
+        });
+        localStorage.setItem("palettes", JSON.stringify(savedPalettes));
       });
 
       //Append to Library
